@@ -1,0 +1,68 @@
+<div class="ui  dimmer"  [class.active]="loading">
+  <div class="ui loader"></div>
+</div>
+
+<!-- <div class="jumbotron, Background:none"> -->
+  <div class="row">
+    <div class="col-sm-10">
+      <h2 class="display"><a style="color: red">COVID-19</a> Tracker By Country Wise </h2>
+    </div>
+    <div class="col-sm-2">
+      <h6 class="display" title="Last Updated">🗓 {{updatedDate}}</h6>
+    </div>
+  </div>
+    
+    <hr class="my-4">
+    <p style="text-align: center; font-weight: bold;">
+        Live coronavirus news tracking the number of <a style="color: orangered">Confirmed Cases</a>, <a
+            style="color: green">Recovered Cases</a> and <a style="color: red">Deaths.</a>
+        <!-- The countries can be selected from the top-left of the screen. -->
+        coronavirus <a style="color: red">COVID-19</a> is affecting 219 countries and territories.
+        The list of countries and their regional classification is based on the
+        United Nations.
+    </p>
+<!-- </div> -->
+<hr class="my-4">
+<div class="mx-auto">
+<div class="form-group col-lg-5 mx-auto">
+    <select name="" class="form-control" id="c" #input (change)='updateValues(input.value)' >
+      <option value="" disabled selected hidden>Select Country</option>
+        <option value="{{con}}" *ngFor='let con of countries'>{{con}}</option>
+    </select>
+</div>
+</div>
+<h2 style="color: gray;">Country Name :  <a style="color: black;">{{input.value == ''? 'INDIA': input.value | uppercase}}</a></h2>
+
+<app-dashboard-card [TotalConfirmed]='TotalConfirmed' [TotalRecovered]='TotalRecovered' [TotalDeaths]='TotalDeaths'
+[TotalActive]='TotalActive'>
+</app-dashboard-card>
+
+
+<div class="row">
+  <!-- <div class="col-sm-5">
+    <google-chart [type]='chart.lineChart' [options]='chart.options' style="width: 100%;" [height]='chart.height' [columns]='columnNames'
+
+    [data]='dataTable'></google-chart>
+    </div> -->
+  <div class="col-sm-12">
+    <table class="ui celled table">
+      <thead style="text-align: center;">
+        <tr>
+            <th>Sno.</th>
+            <th>Date</th>
+            <th>Cases</th>
+       </tr>
+     </thead>
+      <tbody style="text-align: center;">
+        <tr *ngFor='let cs of selectedCountryData; index as i'>
+          <td data-label="Sno">{{i+1}}</td>
+          <td data-label="Date">{{cs.date | date}}</td>
+          <td data-label="Cases">{{cs.cases}}</td>
+        </tr>
+
+      </tbody>
+    </table> 
+   </div>
+</div>
+
+   

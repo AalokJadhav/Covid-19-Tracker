@@ -1,0 +1,75 @@
+<!-- <div class="ui inverted dimmer" [class.active]='loading'>
+  <div class="ui text loader">Loading</div>
+</div> -->
+<div class="jumbotron, Background:none">
+  <div class="row">
+    <div class="col-sm-10">
+      <!-- <h2 class="display"><a style="color: red">COVID-19</a> Tracker By Country Wise </h2> -->
+    </div>
+    <div class="col-sm-2">
+      <h6 class="display" title="Last Updated">🗓 {{updatedDate}}</h6>
+    </div>
+  </div>
+  <hr class="my-4">
+  <p style="text-align: center; font-weight: bold;">
+    Coronavirus disease (<a style="color: red">COVID-19</a>) is an infectious disease caused by a newly discovered
+    coronavirus.
+    <a style="color: red">COVID-19</a> is affecting 219 countries and territories.
+    This Web App help to provide data for <a style="color: red">COVID-19</a> pandemic by country and territory. In
+    this site I am showing Live coronavirus news tracking the number of <a style="color: orangered">Confirmed
+      Cases</a>, <a style="color: green">Recovered Cases</a>,<a style="color: red">Deaths.</a> and <a
+      style="color:blue">Active.</a>
+    The list of countries and their regional classification is based on the
+    United Nations.
+    I also Shows Bar Chart & Pi Chart for all over the world.
+  </p>
+  <hr class="my-4">
+
+  <app-dashboard-card [TotalConfirmed]='TotalConfirmed' [TotalRecovered]='TotalRecovered' [TotalDeaths]='TotalDeaths'
+    [TotalActive]='TotalActive'>
+  </app-dashboard-card>
+
+  <div class="ui form">
+    <div class="inline fields" style="padding-left: 20px;">
+      <div class="field">
+        <label for="caseType">Select Case Type:</label>
+        <div class="ui radio checkbox">
+          <input type="radio" id="c" name="casetype" #c (click)='updateChart(c)' value="c" checked="" tabindex="0"
+            class="hidden">
+          <label for="c">Confirmed</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="d" name="casetype" #d (click)='updateChart(d)' value="d" tabindex="0" class="hidden">
+          <label for="d">Deaths</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="r" name="casetype" #r (click)='updateChart(r)' value="r" tabindex="0" class="hidden">
+          <label for="r">Recovered</label>
+        </div>
+      </div>
+      <div class="field">
+        <div class="ui radio checkbox">
+          <input type="radio" id="a" name="casetype" #a (click)='updateChart(a)' value="a" tabindex="0" class="hidden">
+          <label for="a">Active</label>
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col" style="border:1px solid gray;">
+        <h5 style="text-align:center; padding-top: 25px;font-weight: bold;">{{pie}}</h5>
+        <google-chart [type]='chart.PieChart' [options]='chart.options' style="width: 100%;" [height]='chart.height'
+          [data]='datatable'></google-chart>
+      </div>
+      <div class="col" style="border:1px solid gray;">
+        <h5 style="text-align:center; padding-top: 25px;font-weight: bold;">{{column}}</h5>
+        <google-chart [type]='chart.ColumnChart' style="width: 100%;" [options]='chart.options' [height]='chart.height' text='Cases'
+          [data]='datatable'></google-chart>
+      </div>
+    </div>
+
+  </div>
